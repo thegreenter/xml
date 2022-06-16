@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/Xml/Templates/invoice2.0.xml.twig
 {% spaceless %}
 <?xml version="1.0" encoding="utf-8"?>
 <Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
@@ -6,6 +7,11 @@
          xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
          xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"
          xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1">
+=======
+{% apply spaceless %}
+<?xml version="1.0" encoding="utf-8"?>
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1">
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40:src/Xml/Templates/invoice2.0.xml.twig
     <ext:UBLExtensions>
         <ext:UBLExtension>
             <ext:ExtensionContent>
@@ -112,18 +118,17 @@
     {% set emp = doc.company %}
     <cac:Signature>
         <cbc:ID>{{ emp.ruc }}</cbc:ID>
-        <cbc:Note>GREENTER Builder</cbc:Note>
         <cac:SignatoryParty>
             <cac:PartyIdentification>
                 <cbc:ID>{{ emp.ruc }}</cbc:ID>
             </cac:PartyIdentification>
             <cac:PartyName>
-                <cbc:Name><![CDATA[{{ emp.nombreComercial|raw }}]]></cbc:Name>
+                <cbc:Name><![CDATA[{{ emp.razonSocial|raw }}]]></cbc:Name>
             </cac:PartyName>
         </cac:SignatoryParty>
         <cac:DigitalSignatureAttachment>
             <cac:ExternalReference>
-                <cbc:URI>#SIGN-GREEN</cbc:URI>
+                <cbc:URI>#GREENTER-SIGN</cbc:URI>
             </cac:ExternalReference>
         </cac:DigitalSignatureAttachment>
     </cac:Signature>
@@ -290,7 +295,11 @@
     <cac:LegalMonetaryTotal>
         <cbc:AllowanceTotalAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.sumDsctoGlobal|default(0)|n_format }}</cbc:AllowanceTotalAmount>
         <cbc:ChargeTotalAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.mtoOtrosTributos|default(0)|n_format }}</cbc:ChargeTotalAmount>
+<<<<<<< HEAD:src/Xml/Templates/invoice2.0.xml.twig
         {% if doc.totalAnticipos %}<cbc:PrepaidAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.totalAnticipos|n_format }}</cbc:PrepaidAmount>{% endif %}
+=======
+        {% if doc.totalAnticipos is not null %}<cbc:PrepaidAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.totalAnticipos|n_format }}</cbc:PrepaidAmount>{% endif %}
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40:src/Xml/Templates/invoice2.0.xml.twig
         <cbc:PayableAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.mtoImpVenta|n_format }}</cbc:PayableAmount>
     </cac:LegalMonetaryTotal>
     {% for detail in doc.details %}
@@ -370,4 +379,8 @@
     </cac:InvoiceLine>
     {% endfor %}
 </Invoice>
+<<<<<<< HEAD:src/Xml/Templates/invoice2.0.xml.twig
 {% endspaceless %}
+=======
+{% endapply %}
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40:src/Xml/Templates/invoice2.0.xml.twig

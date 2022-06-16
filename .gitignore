@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 /.idea/
 /build/
 /vendor/
 composer.lock
 .php_cs.cache
 .DS_Store
+=======
+vendor/
+composer.lock
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40

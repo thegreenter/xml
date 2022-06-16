@@ -6,6 +6,8 @@
  * Time: 10:40 AM.
  */
 
+declare(strict_types=1);
+
 namespace Tests\Greenter\Xml\Builder;
 
 use Greenter\Builder\BuilderInterface;
@@ -47,6 +49,7 @@ trait FeBuilderTrait
             'autoescape' => false,
         ]);
 
+<<<<<<< HEAD
         /** @var $builder BuilderInterface */
         return $builder;
     }
@@ -57,6 +60,13 @@ trait FeBuilderTrait
      * @return string
      */
     private function build(DocumentInterface $document)
+=======
+        /** @var BuilderInterface $builder */
+        return $builder;
+    }
+
+    private function build(DocumentInterface $document): ?string
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
     {
         $generator = $this->getGenerator(get_class($document));
 

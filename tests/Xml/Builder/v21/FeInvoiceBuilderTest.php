@@ -6,17 +6,32 @@
  * Time: 18:05
  */
 
+<<<<<<< HEAD
+=======
+declare(strict_types=1);
+
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
 namespace Tests\Greenter\Xml\Builder\v21;
 
 use Greenter\Data\Generator\InvoiceDiscountStore;
 use Greenter\Data\Generator\InvoiceFullStore;
 use Greenter\Data\Generator\InvoiceIcbperStore;
 use Greenter\Data\Generator\InvoiceIvapStore;
+<<<<<<< HEAD
 use Greenter\Model\Sale\Invoice;
 use Tests\Greenter\Xml\Builder\FeBuilderTrait;
 use Tests\Greenter\Xml\Builder\XsdValidatorTrait;
 
 class FeInvoiceBuilderTest extends \PHPUnit_Framework_TestCase
+=======
+use Greenter\Data\Generator\InvoicePagoCreditoStore;
+use Greenter\Model\Sale\Invoice;
+use Tests\Greenter\Xml\Builder\FeBuilderTrait;
+use Tests\Greenter\Xml\Builder\XsdValidatorTrait;
+use PHPUnit\Framework\TestCase;
+
+class FeInvoiceBuilderTest extends TestCase
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
 {
     use FeBuilderTrait;
     use XsdValidatorTrait;
@@ -49,9 +64,16 @@ class FeInvoiceBuilderTest extends \PHPUnit_Framework_TestCase
     public function storeProvider()
     {
         return [
+<<<<<<< HEAD
           [InvoiceDiscountStore::class],
           [InvoiceIvapStore::class],
           [InvoiceIcbperStore::class]
+=======
+            [InvoiceDiscountStore::class],
+            [InvoiceIvapStore::class],
+            [InvoiceIcbperStore::class],
+            [InvoicePagoCreditoStore::class]
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
         ];
     }
 }
