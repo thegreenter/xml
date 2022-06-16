@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% spaceless %}
 <?xml version="1.0" encoding="utf-8"?>
 <DebitNote xmlns="urn:oasis:names:specification:ubl:schema:xsd:DebitNote-2"
@@ -5,6 +6,11 @@
            xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
            xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
            xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+=======
+{% apply spaceless %}
+<?xml version="1.0" encoding="utf-8"?>
+<DebitNote xmlns="urn:oasis:names:specification:ubl:schema:xsd:DebitNote-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2">
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
     <ext:UBLExtensions>
         <ext:UBLExtension>
             <ext:ExtensionContent/>
@@ -54,18 +60,29 @@
     {% set emp = doc.company %}
     <cac:Signature>
         <cbc:ID>{{ emp.ruc }}</cbc:ID>
+<<<<<<< HEAD
         <cbc:Note>GREENTER</cbc:Note>
+=======
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
         <cac:SignatoryParty>
             <cac:PartyIdentification>
                 <cbc:ID>{{ emp.ruc }}</cbc:ID>
             </cac:PartyIdentification>
             <cac:PartyName>
+<<<<<<< HEAD
                 <cbc:Name><![CDATA[{{ emp.nombreComercial|raw }}]]></cbc:Name>
+=======
+                <cbc:Name><![CDATA[{{ emp.razonSocial|raw }}]]></cbc:Name>
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
             </cac:PartyName>
         </cac:SignatoryParty>
         <cac:DigitalSignatureAttachment>
             <cac:ExternalReference>
+<<<<<<< HEAD
                 <cbc:URI>#SIGN-GREEN</cbc:URI>
+=======
+                <cbc:URI>#GREENTER-SIGN</cbc:URI>
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
             </cac:ExternalReference>
         </cac:DigitalSignatureAttachment>
     </cac:Signature>
@@ -164,6 +181,7 @@
                 <cbc:TaxableAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.mtoOperGravadas|n_format }}</cbc:TaxableAmount>
                 <cbc:TaxAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.mtoIGV|n_format }}</cbc:TaxAmount>
                 <cac:TaxCategory>
+<<<<<<< HEAD
                     {% if hasIvap(doc.details) %}
                     <cac:TaxScheme>
                         <cbc:ID>1016</cbc:ID>
@@ -171,12 +189,17 @@
                         <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
                     </cac:TaxScheme>
                     {% else %}
+=======
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
                     <cac:TaxScheme>
                         <cbc:ID>1000</cbc:ID>
                         <cbc:Name>IGV</cbc:Name>
                         <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
                     </cac:TaxScheme>
+<<<<<<< HEAD
                     {% endif %}
+=======
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
                 </cac:TaxCategory>
             </cac:TaxSubtotal>
         {% endif %}
@@ -209,7 +232,11 @@
         {% if doc.mtoOperGratuitas %}
             <cac:TaxSubtotal>
                 <cbc:TaxableAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.mtoOperGratuitas|n_format }}</cbc:TaxableAmount>
+<<<<<<< HEAD
                 <cbc:TaxAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.mtoIGV|n_format }}</cbc:TaxAmount>
+=======
+                <cbc:TaxAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.mtoIGVGratuitas|n_format }}</cbc:TaxAmount>
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
                 <cac:TaxCategory>
                     <cac:TaxScheme>
                         <cbc:ID>9996</cbc:ID>
@@ -232,6 +259,22 @@
                 </cac:TaxCategory>
             </cac:TaxSubtotal>
         {% endif %}
+<<<<<<< HEAD
+=======
+        {% if doc.mtoIvap %}
+            <cac:TaxSubtotal>
+                <cbc:TaxableAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.mtoBaseIvap|n_format }}</cbc:TaxableAmount>
+                <cbc:TaxAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.mtoIvap|n_format }}</cbc:TaxAmount>
+                <cac:TaxCategory>
+                    <cac:TaxScheme>
+                        <cbc:ID>1016</cbc:ID>
+                        <cbc:Name>IVAP</cbc:Name>
+                        <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+                    </cac:TaxScheme>
+                </cac:TaxCategory>
+            </cac:TaxSubtotal>
+        {% endif %}
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
         {% if doc.mtoOtrosTributos %}
             <cac:TaxSubtotal>
                 <cbc:TaxableAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.mtoBaseOth|n_format }}</cbc:TaxableAmount>
@@ -259,9 +302,18 @@
         {% endif %}
     </cac:TaxTotal>
     <cac:RequestedMonetaryTotal>
+<<<<<<< HEAD
         {% if doc.sumOtrosCargos %}
         <cbc:ChargeTotalAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.sumOtrosCargos|n_format }}</cbc:ChargeTotalAmount>
         {% endif %}
+=======
+        {% if doc.sumOtrosCargos is not null %}
+        <cbc:ChargeTotalAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.sumOtrosCargos|n_format }}</cbc:ChargeTotalAmount>
+        {% endif %}
+        {% if doc.redondeo is not null %}
+        <cbc:PayableRoundingAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.redondeo|n_format }}</cbc:PayableRoundingAmount>
+        {% endif %}
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
         <cbc:PayableAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.mtoImpVenta|n_format }}</cbc:PayableAmount>
     </cac:RequestedMonetaryTotal>
     {% for detail in doc.details %}
@@ -331,8 +383,13 @@
             <cac:TaxSubtotal>
                 <cbc:TaxAmount currencyID="{{ doc.tipoMoneda }}">{{ detail.icbper|n_format }}</cbc:TaxAmount>
                 <cbc:BaseUnitMeasure unitCode="{{ detail.unidad }}">{{ detail.cantidad }}</cbc:BaseUnitMeasure>
+<<<<<<< HEAD
                 <cbc:PerUnitAmount currencyID="{{ doc.tipoMoneda }}">{{ detail.factorIcbper|n_format }}</cbc:PerUnitAmount>
                 <cac:TaxCategory>
+=======
+                <cac:TaxCategory>
+                    <cbc:PerUnitAmount currencyID="{{ doc.tipoMoneda }}">{{ detail.factorIcbper|n_format }}</cbc:PerUnitAmount>
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
                     <cac:TaxScheme>
                         <cbc:ID>7152</cbc:ID>
                         <cbc:Name>ICBPER</cbc:Name>
@@ -349,16 +406,27 @@
                     <cbc:ID>{{ detail.codProducto }}</cbc:ID>
                 </cac:SellersItemIdentification>
             {% endif %}
+<<<<<<< HEAD
             {% if detail.codProdSunat %}
                 <cac:CommodityClassification>
                     <cbc:ItemClassificationCode>{{ detail.codProdSunat }}</cbc:ItemClassificationCode>
                 </cac:CommodityClassification>
             {% endif %}
+=======
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
             {% if detail.codProdGS1 %}
                 <cac:StandardItemIdentification>
                     <cbc:ID>{{ detail.codProdGS1 }}</cbc:ID>
                 </cac:StandardItemIdentification>
             {% endif %}
+<<<<<<< HEAD
+=======
+            {% if detail.codProdSunat %}
+                <cac:CommodityClassification>
+                    <cbc:ItemClassificationCode>{{ detail.codProdSunat }}</cbc:ItemClassificationCode>
+                </cac:CommodityClassification>
+            {% endif %}
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
             {% if detail.atributos %}
                 {% for atr in detail.atributos %}
                     <cac:AdditionalItemProperty >
@@ -390,4 +458,8 @@
     </cac:DebitNoteLine>
    {% endfor %}
 </DebitNote>
+<<<<<<< HEAD
 {% endspaceless %}
+=======
+{% endapply %}
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40

@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/Xml/Templates/notacr2.0.xml.twig
 {% spaceless %}
 <?xml version="1.0" encoding="utf-8"?>
 <CreditNote xmlns="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2"
@@ -6,6 +7,11 @@
             xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
             xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"
             xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1">
+=======
+{% apply spaceless %}
+<?xml version="1.0" encoding="utf-8"?>
+<CreditNote xmlns="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1">
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40:src/Xml/Templates/notacr2.0.xml.twig
     <ext:UBLExtensions>
         <ext:UBLExtension>
             <ext:ExtensionContent>
@@ -96,18 +102,17 @@
     {% set emp = doc.company %}
     <cac:Signature>
         <cbc:ID>{{ emp.ruc }}</cbc:ID>
-        <cbc:Note>GREENTER Builder</cbc:Note>
         <cac:SignatoryParty>
             <cac:PartyIdentification>
                 <cbc:ID>{{ emp.ruc }}</cbc:ID>
             </cac:PartyIdentification>
             <cac:PartyName>
-                <cbc:Name><![CDATA[{{ emp.nombreComercial|raw }}]]></cbc:Name>
+                <cbc:Name><![CDATA[{{ emp.razonSocial|raw }}]]></cbc:Name>
             </cac:PartyName>
         </cac:SignatoryParty>
         <cac:DigitalSignatureAttachment>
             <cac:ExternalReference>
-                <cbc:URI>#SIGN-GREEN</cbc:URI>
+                <cbc:URI>#GREENTER-SIGN</cbc:URI>
             </cac:ExternalReference>
         </cac:DigitalSignatureAttachment>
     </cac:Signature>
@@ -275,4 +280,8 @@
     </cac:CreditNoteLine>
     {% endfor %}
 </CreditNote>
+<<<<<<< HEAD:src/Xml/Templates/notacr2.0.xml.twig
 {% endspaceless %}
+=======
+{% endapply %}
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40:src/Xml/Templates/notacr2.0.xml.twig

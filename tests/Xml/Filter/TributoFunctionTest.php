@@ -6,11 +6,22 @@
  * Time: 18:37
  */
 
+<<<<<<< HEAD
 namespace Tests\Greenter\Xml\Filter;
 
 use Greenter\Xml\Filter\TributoFunction;
 
 class TributoFunctionTest extends \PHPUnit_Framework_TestCase
+=======
+declare(strict_types=1);
+
+namespace Tests\Greenter\Xml\Filter;
+
+use Greenter\Xml\Filter\TributoFunction;
+use PHPUnit\Framework\TestCase;
+
+class TributoFunctionTest extends TestCase
+>>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
 {
     /**
      * @dataProvider getCodes
