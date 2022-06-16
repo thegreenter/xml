@@ -6,19 +6,16 @@
  * Time: 03:02 PM
  */
 
-declare(strict_types=1);
-
 namespace Tests\Greenter\Xml\Builder;
 
 use Greenter\Data\Generator\PerceptionStore;
 use Greenter\Model\Perception\Perception;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Class CePerceptionBuilderTest
  * @package tests\Greenter\Xml\Builder
  */
-class CePerceptionBuilderTest extends TestCase
+class CePerceptionBuilderTest extends \PHPUnit_Framework_TestCase
 {
     use CeBuilderTrait;
     use XsdValidatorTrait;

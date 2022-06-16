@@ -6,24 +6,16 @@
  * Time: 10:47 AM
  */
 
-declare(strict_types=1);
-
 namespace Tests\Greenter\Xml\Builder;
 
-<<<<<<< HEAD
-=======
-use DateTime;
-use DateTimeImmutable;
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
 use Greenter\Data\Generator\VoidedStore;
 use Greenter\Model\Voided\Voided;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Class FeVoidedBuilderTest
  * @package tests\Greenter\Xml\Builder
  */
-class FeVoidedBuilderTest extends TestCase
+class FeVoidedBuilderTest extends \PHPUnit_Framework_TestCase
 {
     use FeBuilderTrait;
     use XsdValidatorTrait;
@@ -38,42 +30,24 @@ class FeVoidedBuilderTest extends TestCase
         $this->assertSchema($xml);
     }
 
-    public function testCreateXmlVoidedTimeInmutable()
-    {
-<<<<<<< HEAD
-        /**@var $voided Voided */
-        $voided = $this->createDocument(VoidedStore::class);
-        $filename = $voided->getName();
-=======
-        /**@var Voided $voided */
-        $voided = $this->createDocument(VoidedStore::class);
-        $voided->setFecComunicacion(new DateTimeImmutable());
-
-        $xml = $this->build($voided);
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
-
-        $this->assertNotEmpty($xml);
-        $this->assertSchema($xml);
-    }
-
-    public function testVoideTimeZone()
-    {
-        /**@var Voided $voided */
-        $voided = $this->createDocument(VoidedStore::class);
-        $voided->setFecComunicacion(new DateTime('2021-02-04 01:30:00+00:00')); // UTC 20210204
-
-        $name = $voided->getName();
-
-        $this->assertStringContainsString('RA-20210203-', $name); // Lima 20210203
-    }
-
     public function testVoidedFilename()
     {
         /**@var $voided Voided */
         $voided = $this->createDocument(VoidedStore::class);
-        $voided->setFecComunicacion(new DateTime('2021-03-05 00:00:00-05:00'));
         $filename = $voided->getName();
 
-        $this->assertEquals('20123456789-RA-20210305-00111', $filename);
+        $this->assertEquals($this->getFilename($voided), $filename);
+    }
+
+    private function getFilename(Voided $voided)
+    {
+        $parts = [
+            $voided->getCompany()->getRuc(),
+            'RA',
+            $voided->getFecComunicacion()->format('Ymd'),
+            $voided->getCorrelativo(),
+        ];
+
+        return join('-', $parts);
     }
 }

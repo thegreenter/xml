@@ -6,19 +6,10 @@
  * Time: 19:23.
  */
 
-declare(strict_types=1);
-
 namespace Greenter\Xml\Builder;
 
-<<<<<<< HEAD
 use Greenter\Xml\Filter\FormatFilter;
 use Twig\Environment;
-=======
-use Greenter\Model\TimeZonePe;
-use Greenter\Xml\Filter\FormatFilter;
-use Twig\Environment;
-use Twig\Extension\CoreExtension;
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
 
@@ -37,9 +28,9 @@ class TwigBuilder
      *
      * @param array $options [optional] Recommended: 'cache' => '/dir/cache'
      */
-    public function __construct(array $options = [])
+    public function __construct($options = [])
     {
-        $this->twig = $this->createTwig($options);
+        $this->initTwig($options);
     }
 
     /**
@@ -50,18 +41,17 @@ class TwigBuilder
      *
      * @return string
      */
-    public function render($template, $doc): string
+    public function render($template, $doc)
     {
         return $this->twig->render($template, [
             'doc' => $doc,
         ]);
     }
 
-    private function createTwig(array $options)
+    private function initTwig($options)
     {
         $loader = new FilesystemLoader(__DIR__.'/../Templates');
 
-<<<<<<< HEAD
         $twig = new Environment($loader, $options);
         $this->LoadFilterAndFunctions($twig);
 
@@ -78,31 +68,4 @@ class TwigBuilder
         $twig->addFilter(new TwigFilter('n_format', [$formatFilter, 'number']));
         $twig->addFilter(new TwigFilter('n_format_limit', [$formatFilter, 'numberLimit']));
     }
-=======
-        $twigEnv = new Environment($loader, $options);
-        $this->loadFilterAndFunctions($twigEnv);
-        $this->configureTimezone($twigEnv);
-
-        return $twigEnv;
-    }
-
-    private function configureTimezone(Environment $twig)
-    {
-        $extension = $twig->getExtension(CoreExtension::class);
-        if ($extension instanceof CoreExtension) {
-            $extension->setTimezone(TimeZonePe::DEFAULT);
-        }
-    }
-
-    /**
-     * @param Environment $twig
-     */
-    private function loadFilterAndFunctions(Environment $twig)
-    {
-        $formatFilter = new FormatFilter();
-
-        $twig->addFilter(new TwigFilter('n_format', [$formatFilter, 'number']));
-        $twig->addFilter(new TwigFilter('n_format_limit', [$formatFilter, 'numberLimit']));
-    }
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
 }

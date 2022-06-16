@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {% spaceless %}
 <?xml version="1.0" encoding="utf-8"?>
 <SummaryDocuments
@@ -9,11 +8,6 @@
         xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"
         xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-=======
-{% apply spaceless %}
-<?xml version="1.0" encoding="utf-8"?>
-<SummaryDocuments xmlns="urn:sunat:names:specification:ubl:peru:schema:xsd:SummaryDocuments-1" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1">
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
     <ext:UBLExtensions>
         <ext:UBLExtension>
             <ext:ExtensionContent/>
@@ -32,12 +26,12 @@
                 <cbc:ID>{{ emp.ruc }}</cbc:ID>
             </cac:PartyIdentification>
             <cac:PartyName>
-                <cbc:Name><![CDATA[{{ emp.razonSocial|raw }}]]></cbc:Name>
+                <cbc:Name><![CDATA[{{ emp.nombreComercial|raw }}]]></cbc:Name>
             </cac:PartyName>
         </cac:SignatoryParty>
         <cac:DigitalSignatureAttachment>
             <cac:ExternalReference>
-                <cbc:URI>#GREENTER-SIGN</cbc:URI>
+                <cbc:URI>#SIGN-GREEN</cbc:URI>
             </cac:ExternalReference>
         </cac:DigitalSignatureAttachment>
     </cac:Signature>
@@ -119,7 +113,6 @@
         {% endif %}
         {% if det.mtoIvap %}
         {% set ivap = det.mtoIvap|n_format %}
-<<<<<<< HEAD
         <cac:TaxTotal>
             <cbc:TaxAmount currencyID="{{ doc.moneda }}">{{ ivap }}</cbc:TaxAmount>
             <cac:TaxSubtotal>
@@ -138,26 +131,6 @@
         <cac:TaxTotal>
             <cbc:TaxAmount currencyID="{{ doc.moneda }}">{{ igv }}</cbc:TaxAmount>
             <cac:TaxSubtotal>
-=======
-        <cac:TaxTotal>
-            <cbc:TaxAmount currencyID="{{ doc.moneda }}">{{ ivap }}</cbc:TaxAmount>
-            <cac:TaxSubtotal>
-                <cbc:TaxAmount currencyID="{{ doc.moneda }}">{{ ivap }}</cbc:TaxAmount>
-                <cac:TaxCategory>
-                    <cac:TaxScheme>
-                        <cbc:ID>1016</cbc:ID>
-                        <cbc:Name>IVAP</cbc:Name>
-                        <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
-                    </cac:TaxScheme>
-                </cac:TaxCategory>
-            </cac:TaxSubtotal>
-        </cac:TaxTotal>
-        {% else %}
-        {% set igv = det.mtoIGV|n_format %}
-        <cac:TaxTotal>
-            <cbc:TaxAmount currencyID="{{ doc.moneda }}">{{ igv }}</cbc:TaxAmount>
-            <cac:TaxSubtotal>
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
                 <cbc:TaxAmount currencyID="{{ doc.moneda }}">{{ igv }}</cbc:TaxAmount>
                 <cac:TaxCategory>
                     <cac:TaxScheme>
@@ -201,30 +174,7 @@
             </cac:TaxSubtotal>
         </cac:TaxTotal>
         {% endif %}
-<<<<<<< HEAD
     </sac:SummaryDocumentsLine>
     {% endfor %}
 </SummaryDocuments>
 {% endspaceless %}
-=======
-        {% if det.mtoIcbper %}
-            {% set icbper = det.mtoIcbper|n_format %}
-            <cac:TaxTotal>
-                <cbc:TaxAmount currencyID="{{ doc.moneda }}">{{ icbper }}</cbc:TaxAmount>
-                <cac:TaxSubtotal>
-                    <cbc:TaxAmount currencyID="{{ doc.moneda }}">{{ icbper }}</cbc:TaxAmount>
-                    <cac:TaxCategory>
-                        <cac:TaxScheme>
-                            <cbc:ID>7152</cbc:ID>
-                            <cbc:Name>ICBPER</cbc:Name>
-                            <cbc:TaxTypeCode>OTH</cbc:TaxTypeCode>
-                        </cac:TaxScheme>
-                    </cac:TaxCategory>
-                </cac:TaxSubtotal>
-            </cac:TaxTotal>
-        {% endif %}
-    </sac:SummaryDocumentsLine>
-    {% endfor %}
-</SummaryDocuments>
-{% endapply %}
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40

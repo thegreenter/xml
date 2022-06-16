@@ -6,14 +6,8 @@
  * Time: 10:14 AM
  */
 
-declare(strict_types=1);
-
 namespace Tests\Greenter\Xml\Builder;
 
-<<<<<<< HEAD
-=======
-use DOMDocument;
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
 use Greenter\Ubl\Resolver\UblPathResolver;
 use Greenter\Ubl\UblValidator;
 use Greenter\Ubl\UblValidatorInterface;
@@ -49,37 +43,21 @@ trait XsdValidatorTrait
 
     private function getDocument($xml)
     {
-<<<<<<< HEAD
         if ($xml instanceof \DOMDocument) {
             return $xml;
         }
 
         $doc = new \DOMDocument();
-=======
-        if ($xml instanceof DOMDocument) {
-            return $xml;
-        }
-
-        $doc = new DOMDocument();
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
         $doc->loadXML($xml);
 
         return $doc;
     }
 
-<<<<<<< HEAD
     private function createExtensionContent(\DOMDocument $document)
     {
         $childs = $document->documentElement->getElementsByTagNameNS('urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2','ExtensionContent');
         if ($childs->length > 0) {
             $element = $document->createElementNS('urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2','cbc:AccountID', 1);
-=======
-    private function createExtensionContent(DOMDocument $document)
-    {
-        $childs = $document->documentElement->getElementsByTagNameNS('urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2', 'ExtensionContent');
-        if ($childs->length > 0) {
-            $element = $document->createElementNS('urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2', 'cbc:AccountID', '1');
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
             $childs->item(0)->appendChild($element);
         }
     }
@@ -97,7 +75,6 @@ trait XsdValidatorTrait
         return $validator;
     }
 
-<<<<<<< HEAD
     private function getUblVersion(\DOMDocument $doc)
     {
         $items = $doc->getElementsByTagNameNS($this->CbcNs,'UBLVersionID');
@@ -105,12 +82,3 @@ trait XsdValidatorTrait
         return $items->length === 0 ? '2.0' : $items->item(0)->textContent;
     }
 }
-=======
-    private function getUblVersion(DOMDocument $doc)
-    {
-        $items = $doc->getElementsByTagNameNS($this->CbcNs, 'UBLVersionID');
-
-        return $items->length === 0 ? '2.0' : $items->item(0)->textContent;
-    }
-}
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40

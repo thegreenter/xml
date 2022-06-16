@@ -6,38 +6,23 @@
  * Time: 12:44 PM
  */
 
-declare(strict_types=1);
-
 namespace Tests\Greenter\Xml\Builder;
 
-<<<<<<< HEAD
-=======
-use DateTime;
-use Greenter\Data\Generator\SummaryIcbperStore;
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
 use Greenter\Data\Generator\SummaryStore;
 use Greenter\Model\Summary\Summary;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Class FeSummaryBuilderTest
  * @package Tests\Greenter\Xml\Builder
  */
-class FeSummaryBuilderTest extends TestCase
+class FeSummaryBuilderTest extends \PHPUnit_Framework_TestCase
 {
     use FeBuilderTrait;
     use XsdValidatorTrait;
 
-    /**
-     * @dataProvider storeProvider
-     */
-    public function testCreateXmlSummary($summaryClass)
+    public function testCreateXmlSummary()
     {
-<<<<<<< HEAD
         $summary = $this->createDocument(SummaryStore::class);
-=======
-        $summary = $this->createDocument($summaryClass);
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
 
         $xml = $this->build($summary);
 
@@ -62,20 +47,20 @@ class FeSummaryBuilderTest extends TestCase
     {
         /**@var $summary Summary*/
         $summary = $this->createDocument(SummaryStore::class);
-<<<<<<< HEAD
-=======
-        $summary->setFecResumen(new DateTime('2021-03-05 00:00:00-05:00'));
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40
         $filename = $summary->getName();
 
-        $this->assertEquals('20123456789-RC-20210305-001', $filename);
+        $this->assertEquals($this->getFilename($summary), $filename);
     }
 
-    public function storeProvider()
+    private function getFileName(Summary $summary)
     {
-        return [
-          [SummaryStore::class],
-          [SummaryIcbperStore::class]
+        $parts = [
+            $summary->getCompany()->getRuc(),
+            'RC',
+            $summary->getFecResumen()->format('Ymd'),
+            $summary->getCorrelativo(),
         ];
+
+        return join('-', $parts);
     }
 }

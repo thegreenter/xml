@@ -1,6 +1,5 @@
 # XML - Greenter
 
-<<<<<<< HEAD
 [![Travis-CI](https://img.shields.io/travis/giansalex/greenter-xml.svg?branch=master&style=flat-square)](https://travis-ci.org/giansalex/greenter-xml)
 [![Coverage Status](https://img.shields.io/coveralls/giansalex/greenter-xml.svg?style=flat-square&branch=master)](https://coveralls.io/github/giansalex/greenter-xml?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bc6f0b348aec4b5db956815ccbc32daa)](https://www.codacy.com/app/giansalex/greenter-xml?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=giansalex/greenter-xml&amp;utm_campaign=Badge_Grade)  
@@ -40,12 +39,3 @@ echo $xml;
 ## Reference
 - [Ubl 2.0](http://www.datypic.com/sc/ubl20/)
 - [Ubl 2.1](http://www.datypic.com/sc/ubl21/)
-=======
-[![src greenter](https://greenter.dev/img/greenter_badge.svg)](https://github.com/thegreenter/greenter)
-  
-Generar XML que cumplen con el estándar UBL v2.0, v2.1 para la elaboración de comprobantes electrónicos.
-
-## Recursos
-- [Documentación](https://greenter.dev/packages/xml/)
-- [Reportar un error](https://github.com/thegreenter/greenter/issues) o enviar un [pull request](https://github.com/thegreenter/greenter/pulls) al [repositorio principal de greenter](https://github.com/thegreenter/greenter).
->>>>>>> 9923f9d29e58499db1b46d478ff62f652e7ade40

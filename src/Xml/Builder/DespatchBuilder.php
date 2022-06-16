@@ -6,8 +6,6 @@
  * Time: 13:46
  */
 
-declare(strict_types=1);
-
 namespace Greenter\Xml\Builder;
 
 use Greenter\Builder\BuilderInterface;
@@ -25,7 +23,7 @@ class DespatchBuilder extends TwigBuilder implements BuilderInterface
      * @param DocumentInterface $document
      * @return string
      */
-    public function build(DocumentInterface $document): ?string
+    public function build(DocumentInterface $document)
     {
         return $this->render('despatch.xml.twig', $document);
     }
