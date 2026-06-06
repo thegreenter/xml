@@ -130,7 +130,7 @@
             {% endif %}
 			{% if envio.fecEntregaBienes %}
             <cac:LoadingTransportEvent>
-                <cbc:OccurrenceDate>{{ doc.fecEntregaBienes|date('Y-m-d') }}</cbc:OccurrenceDate>
+                <cbc:OccurrenceDate>{{ envio.fecEntregaBienes|date('Y-m-d') }}</cbc:OccurrenceDate>
             </cac:LoadingTransportEvent>
 			{% endif %}
 			{% for chofer in envio.choferes %}
