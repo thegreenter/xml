@@ -39,8 +39,8 @@
         <cac:PostalAddress>
             <cbc:ID>{{ addr.ubigueo }}</cbc:ID>
             <cbc:StreetName><![CDATA[{{ addr.direccion|raw }}]]></cbc:StreetName>
-            <cbc:CityName>{{ addr.departamento }}</cbc:CityName>
-            <cbc:CountrySubentity>{{ addr.provincia }}</cbc:CountrySubentity>
+            <cbc:CityName>{{ addr.provincia }}</cbc:CityName>
+            <cbc:CountrySubentity>{{ addr.departamento }}</cbc:CountrySubentity>
             <cbc:District>{{ addr.distrito }}</cbc:District>
             <cac:Country>
                 <cbc:IdentificationCode>{{ addr.codigoPais }}</cbc:IdentificationCode>
@@ -73,7 +73,7 @@
         {% if det.pagos %}
         {% for pay in det.pagos %}
         <cac:Payment>
-            <cbc:ID>{{ loop.index }}</cbc:ID>
+            <cbc:ID>{{ pay.numero|default(loop.index) }}</cbc:ID>
             <cbc:PaidAmount currencyID="{{ pay.moneda }}">{{ pay.importe|n_format }}</cbc:PaidAmount>
             <cbc:PaidDate>{{ pay.fecha|date('Y-m-d') }}</cbc:PaidDate>
         </cac:Payment>
